@@ -1,0 +1,15 @@
+version: 0.0
+os: linux   
+hooks:
+  BeforeInstall:
+    - location: scripts/login_pull.sh
+      timeout: 60
+      runas: ec2-user
+  AfterInstall:
+    - location: scripts/stop_containers.sh
+      timeout: 60
+      runas: ec2-user
+  ApplicationStart:
+    - location: scripts/run.sh
+      timeout: 300
+      runas: ec2-user
